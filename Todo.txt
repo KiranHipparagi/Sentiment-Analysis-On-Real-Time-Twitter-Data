@@ -1,0 +1,33 @@
+1. Sort by gender
+2. Sort by Location : from mpl_toolkits.basemap import Basemap
+3. Sentiment Analysis
+4. Using Language detect package:::  langdetect 1.0.7
+5. better santitize the tweets :
+		if language is in english then :::>>>> sanitize in : 
+6. better define subjective and objective scores
+7. Check if ignorecase if possible
+
+Difficulties
+1. Location might contain null , wrong info 
+2. Sentiment analysis triggered by language (conversion is always not appropriate)
+3. language translate into string not possible
+4. Sometimes people write their native language converted into english (wrong sentiment analysis)
+5. Sometimes happiness is expressed using smiley's. They arent properly analysed.
+6. special characters matter ::--> 837471088674222080 , remove the canada leaf and it turns to positive sentiment
+7. crazy country information like this :--- > USA, Brazil, Spain
+
+Plots:
+------
+1. Languages
+2. GeoPlot
+3. Top 5 countries 
+4. Polarity Scores
+5. Subjectivity Scores
+6. ~~ if possible :: Do popularity measure 
+7. Maps tooltip set along with sentiment polarity
+
+Errors to handle :
+
+UnicodeEncodeError
+UnicodeEncodeError: 'ascii' codec can't encode character u'\u3012' in position 1: ordinal not in range(128)
+
