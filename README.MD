@@ -73,5 +73,5 @@ The dependencies are contained in the file requirements.txt
 
 
 ### Team members:
-1. Shrobon Biswas
-2. Damayanti Ghosh
+1. Kiran Hipparagi
+2. Ramya Bavache
