@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tweenalyzer</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+  <link rel="stylesheet" type="text/css" href="../static/assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../static/assets/css/keen-dashboards.css" />
+
+
+  <!--Map 1-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages': ['geochart','corechart','bar','table']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawVisualization);
+      google.charts.setOnLoadCallback(drawBasic);
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawTable);
+      google.charts.setOnLoadCallback(drawBasic1);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawTable1);
+      google.charts.setOnLoadCallback(drawBasic2);
+      google.charts.setOnLoadCallback(drawChart3);
+      google.charts.setOnLoadCallback(drawTable2);
+      google.charts.setOnLoadCallback(drawTableTT);
+
+        function drawVisualization() {var data = new google.visualization.DataTable();
+           data.addColumn('number', 'LATITUDE');                                
+           data.addColumn('number', 'LONGITUDE');
+           data.addColumn('string', 'DESCRIPTION'); 
+           data.addColumn('number', 'Value:', 'value'); 
+           data.addColumn({type:'string', role:'tooltip'});   
+           var full = new Array()                     
+           {% for item in tweet_map %}
+              var arr = {{item|safe}}
+              full.push(arr)
+              //var arr1 = JSON.parse(arr.replace("&#39;","'"));
+              
+              //console.log(arr);
+           {% endfor %}
+           data.addRows(full);
+
+       var options = {
+         colorAxis: {colors: ['#ff0000', '#00ff59']},
+         'width':"100%",'height':400,
+         displayMode: 'markers', 
+         enableRegionInteractivity: 'true', 
+         sizeAxis: {minValue: -1, maxValue:1},
+         region:'world',
+         tooltip: {textStyle: {color: '#444444'}}    
+       };
+        var chart = new   google.visualization.GeoChart(document.getElementById('gridz')); 
+       chart.draw(data, options);
+       
+       }
+
+
+      //Map 2 Donut:: Language
+      function drawChart() {
+        var data = new google.visualization.arrayToDataTable({{doughnut|safe}});
+        var options = {
+          title: 'Tweet language',
+          pieHole: 0.3,
+          'width':400,
+          'height':400
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+
+
+      //Map 3 Column Chart :: Sources
+function drawBasic() {
+
+      var data = google.visualization.arrayToDataTable({{sources_plot|safe}});
+
+      var options = {
+        'width':600,
+        'height':400,
+        title: 'Top 5 Twitter Platforms',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Number of users',
+          minValue: 0
+        },
+        vAxis: {
+          title: 'Twitter Application Platforms'
+        }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
+
+      chart.draw(data, options);
+    }
+
+    //Map 4 :: Sentiment Map :: Pie Chart
+
+    function drawChart1() {
+
+        // Create the data table.
+        var data = google.visualization.arrayToDataTable({{sentiment_pie|safe}});
+
+        // Set chart options
+        var options = {'title':'Sentiment Analysis of tweets',
+                       'width':400,
+                       'height':400};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('sentiment-pie'));
+        chart.draw(data, options);
+      }
+
+
+      function drawTable() {
+        var data = google.visualization.arrayToDataTable({{table|safe}});
+    
+
+        var table = new google.visualization.Table(document.getElementById('retweet-table'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
+
+      //Map 3 Column Chart :: Sources
+function drawBasic1() {
+
+      var data = google.visualization.arrayToDataTable({{sources_plot1|safe}});
+
+      var options = {
+        'width':600,
+        'height':400,
+        title: 'Top 5 Twitter Platforms',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Number of users',
+          minValue: 0
+        },
+        vAxis: {
+          title: 'Twitter Application Platforms'
+        }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('bar-chart1'));
+
+      chart.draw(data, options);
+    }
+
+    //Map 4 :: Sentiment Map :: Pie Chart
+
+    function drawChart2() {
+
+        // Create the data table.
+        var data = google.visualization.arrayToDataTable({{sentiment_pie|safe}});
+
+        // Set chart options
+        var options = {'title':'Sentiment Analysis of tweets',
+                       'width':400,
+                       'height':400};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('sentiment-pie1'));
+        chart.draw(data, options);
+      }
+
+
+      function drawTable1() {
+        var data = google.visualization.arrayToDataTable({{table1|safe}});
+    
+
+        var table = new google.visualization.Table(document.getElementById('retweet-table1'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
+
+      //Map 3 Column Chart :: Sources
+function drawBasic2() {
+
+      var data = google.visualization.arrayToDataTable({{sources_plot2|safe}});
+
+      var options = {
+        'width':600,
+        'height':400,
+        title: 'Top 5 Twitter Platforms',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Number of users',
+          minValue: 0
+        },
+        vAxis: {
+          title: 'Twitter Application Platforms'
+        }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('bar-chart2'));
+
+      chart.draw(data, options);
+    }
+
+    //Map 4 :: Sentiment Map :: Pie Chart
+
+    function drawChart3() {
+
+        // Create the data table.
+        var data = google.visualization.arrayToDataTable({{sentiment_pie2|safe}});
+
+        // Set chart options
+        var options = {'title':'Sentiment Analysis of tweets',
+                       'width':400,
+                       'height':400};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('sentiment-pie2'));
+        chart.draw(data, options);
+      }
+
+
+      function drawTable2() {
+        var data = google.visualization.arrayToDataTable({{table2|safe}});
+    
+
+        var table = new google.visualization.Table(document.getElementById('retweet-table2'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
+
+      function drawTableTT() {
+        var data = google.visualization.arrayToDataTable({{tt_table|safe}});
+    
+
+        var table = new google.visualization.Table(document.getElementById('trending-table'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
+
+    </script>
+
+
+</head>
+<body class="application">
+
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../">
+          <span class="glyphicon glyphicon-chevron-left"></span>Tweet Analyzer<span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+        <a class="navbar-brand" href="./">The Twitter Analyzer</a>
+      </div>
+
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+        </ul>
+        <div class="col-sm-3 col-md-3 pull-right">
+        <form class="navbar-form" role="search" method="POST" action ="/">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Tweet Distribution Map :: Search Query "{{search}}"
+          </div>
+          <div class="chart-stage">
+            <div id="gridz">
+            </div>
+          </div>
+          <div class="chart-notes">
+             
+            Green hue denotes positive tweet and Red hue denotes negative tweets.
+            -1 sentiment score means negative while 1 means positive sentiment.
+            (**Showing tweets of users, whose location could be determined**)
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Top 10 Trending Topics
+          </div>
+          <div class="chart-stage" id="trending-table">
+
+          </div>
+	</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Top 5 Tweeting Client Platforms :: Search Query "{{search}}""
+          </div>
+          <div class="chart-stage" id="bar-chart" >
+          </div>
+          <div class="chart-notes">
+             Get to know which twitter application is most popular.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Twitter Sentiment Analysis
+          </div>
+          <div class="chart-stage" id="sentiment-pie">
+
+          </div>
+          <div class="chart-notes">
+            Tweets are given sentiment scores, based on the positive and negative words they contain
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Top 10 tweets on "{{search}}"
+          </div>
+          <div class="chart-stage" id="retweet-table">
+
+          </div>
+          <div class="chart-notes">
+            Some of the tweets are translated from their original language to English.
+          </div>
+        </div>
+      </div>
+<!-- end of three -->
+
+  </div>
+
+
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Top 5 Tweeting Client Platforms :: Search Query "{{search1}}""
+          </div>
+          <div class="chart-stage" id="bar-chart1" >
+          </div>
+          <div class="chart-notes">
+             Get to know which twitter application is most popular.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Twitter Sentiment Analysis
+          </div>
+          <div class="chart-stage" id="sentiment-pie1">
+
+          </div>
+          <div class="chart-notes">
+            Tweets are given sentiment scores, based on the positive and negative words they contain
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Top 10 tweets on "{{search1}}"
+          </div>
+          <div class="chart-stage" id="retweet-table1">
+
+          </div>
+          <div class="chart-notes">
+            Some of the tweets are translated from their original language to English.
+          </div>
+        </div>
+      </div>
+<!-- end of three -->
+
+  </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Top 5 Tweeting Client Platforms :: Search Query "{{search2}}""
+          </div>
+          <div class="chart-stage" id="bar-chart2" >
+          </div>
+          <div class="chart-notes">
+             Get to know which twitter application is most popular.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Twitter Sentiment Analysis
+          </div>
+          <div class="chart-stage" id="sentiment-pie2">
+
+          </div>
+          <div class="chart-notes">
+            Tweets are given sentiment scores, based on the positive and negative words they contain
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Top 10 tweets on "{{search2}}"
+          </div>
+          <div class="chart-stage" id="retweet-table2">
+
+          </div>
+          <div class="chart-notes">
+            Some of the tweets are translated from their original language to English.
+          </div>
+        </div>
+      </div>
+<!-- end of three -->
+
+  </div>
+
+
+    <hr>
+
+
+
+    <hr>
+
+
+    <hr>
+
+
+  </div>
+
+  <script type="text/javascript" src="../static/assets/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="../static/assets/lib/holderjs/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  <script type="text/javascript" src="../static/assets/lib/keen-js/dist/keen.min.js"></script>
+  <script type="text/javascript" src="../static/assets/js/meta.js"></script>
+
+</body>
+</html>
