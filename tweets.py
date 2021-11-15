@@ -123,7 +123,7 @@ def QueryTwitter(search_string):
 	auth.set_access_token(access_token, access_secret)
 
 	# Instantiating the API with our Access Token
-	api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+	api = tweepy.API(auth, wait_on_rate_limit=True)
 	# api = tweepy.API(auth)
 
 	tweet_list = []
