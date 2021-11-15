@@ -2,7 +2,7 @@ appdirs==1.4.3
 click==6.7
 cycler==0.10.0
 Flask==0.12
-functools32==3.2.3.post2
+#functools32==3.2.3.post2
 googlemaps==2.4.6
 gunicorn==19.6.0
 itsdangerous==0.24
