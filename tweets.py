@@ -51,7 +51,7 @@ def make_maps(tweetsDataframe):
 	doughnut.append(["Language", "Tweets"])
 	lang_count = tweetsDataframe["language"].value_counts()
 	lang_count = lang_count.to_dict()
-	for key, value in lang_count.iteritems():
+	for key, value in lang_count.items():
 		temp = [key, value]
 		doughnut.append(temp)
 	########################################
@@ -61,7 +61,7 @@ def make_maps(tweetsDataframe):
 	sentiment_pie.append(["Sentiment", "Tweets"])
 	sentiment_count = tweetsDataframe["sentiments_group"].value_counts()
 	sentiment_count = sentiment_count.to_dict()
-	for key, value in sentiment_count.iteritems():
+	for key, value in sentiment_count.items():
 		temp = [key, value]
 		sentiment_pie.append(temp)
 	########################################
@@ -71,7 +71,7 @@ def make_maps(tweetsDataframe):
 	sources_plot.append(["Twitter Client", "Users"])
 	source_count = tweetsDataframe["source"].value_counts()[:5][::-1]
 	source_count = source_count.to_dict()
-	for key, value in source_count.iteritems():
+	for key, value in source_count.items():
 		temp = [key, value]
 		sources_plot.append(temp)
 	########################################
