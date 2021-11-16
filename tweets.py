@@ -222,7 +222,7 @@ def filter_tweets(tweets):
 
 	for tweet in tweets:
 		raw_tweet_text = tweet.text
-		message = TextBlob(unicode(tweet.text))
+		message = TextBlob(str(tweet.text))
 		location = tweet.author.location
 		source = tweet.source
 		lang = tweet.lang
