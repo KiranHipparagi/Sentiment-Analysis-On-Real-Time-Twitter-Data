@@ -85,7 +85,7 @@ def make_maps(tweetsDataframe):
 		latitude = tweetsDataframe['latitude'][i]
 		longitude = tweetsDataframe['longitude'][i]
 		language = tweetsDataframe["translate"][i]
-		language = language.encode('utf-8')
+		#language = language.encode('utf-8')
 		sentiment = tweetsDataframe['sentiments'][i]
 		if latitude == "":
 			continue
@@ -226,7 +226,7 @@ def filter_tweets(tweets):
 		location = tweet.author.location
 		source = tweet.source
 		lang = tweet.lang
-		source = source.encode('utf-8')
+		#source = source.encode('utf-8')
 		tweet_source.append(source)
 		# location can be null :: We have to handle that too
 		if len(location) != 0:
